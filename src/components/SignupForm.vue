@@ -1,16 +1,16 @@
 <template>
   <form @submit.prevent="submitForm">
     <div>
-      <label for="username">username2: </label>
-      <input id="username" type="text" v-model="username" />
+      <label for="email">email: </label>
+      <input id="email" type="text" v-model="email" />
     </div>
     <div>
       <label for="password">password: </label>
       <input id="password" type="text" v-model="password" />
     </div>
     <div>
-      <label for="nickname">nickname: </label>
-      <input id="nickname" type="text" v-model="nickname" />
+      <label for="id">id: </label>
+      <input id="id" type="text" v-model="id" />
     </div>
     <button type="submit">회원 가입</button>
     <p>{{logMessage}}</p>
@@ -24,9 +24,9 @@ export default {
   data() {
     return {
       // form values
-      username: '',
+      email: '',
       password: '',
-      nickname: '',
+      id: '',
       logMessage: '',
     };
   },
@@ -34,19 +34,24 @@ export default {
     async submitForm(){
       console.log('폼 제출')
       const userData = {
-        username: this.username,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json; charset = utf-8'
+        },
+        email: this.email,
         password: this.password,
-        nickname: this.nickname,
+        id: this.id,
+        
       }
       const {data} = await registerUser(userData);
-      console.log(data.username);
-      this.logMessage = `${data.username}님이 가입되었습니다`;
+      console.log(data.email);
+      this.logMessage = `${data.email}님이 가입되었습니다`;
       this.initForm();
     },
     initForm(){
-      this.username = '';
+      this.email = '';
       this.password = '';
-      this.nickname = '';
+      this.id = '';
     }
   },
 };

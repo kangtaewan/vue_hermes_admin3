@@ -15,7 +15,7 @@ import axios from 'axios';
 // export { registerUser, loginUser };
 
 function registerUser(userData){
-  const url = 'http://localhost:3000/signup'
+  const url = '/api/auth/signup'
   return axios.post(url, userData)
 }
 
